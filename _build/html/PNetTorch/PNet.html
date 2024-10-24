@@ -1,0 +1,461 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>&lt;no title&gt; &mdash; PNetTorch</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+      <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/scripts/sphinx-book-theme.js"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script src="../_static/design-tabs.js?v=36754332"></script>
+      <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+      <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../intro.html" class="icon icon-home">
+            Python
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../Pages/Scripts.html">PNet Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="MAIN/Pnet.html">Pnet Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MAIN/reactome.html">Reactome Pathway Network Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MAIN/train.html">Training Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MAIN/utils.html">Utility Function Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Pages/Examples.html">PNetTorch Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../intro.html">Python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../intro.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">&lt;no title&gt;</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/Barry8197/PNetBook/blob/master/_build/html/_sources/PNetTorch/PNet.ipynb" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span> <span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">reactome</span><span class="o">,</span> <span class="nn">Pnet</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="o">%</span><span class="k">load_ext</span> autoreload
+<span class="o">%</span><span class="k">autoreload</span> 2
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="nn">Input In [1],</span> in <span class="ni">&lt;cell line: 3&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">sys</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span> <span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">reactome</span><span class="o">,</span> <span class="nn">Pnet</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_line_magic</span><span class="p">(</span><span class="s1">&#39;load_ext&#39;</span><span class="p">,</span> <span class="s1">&#39;autoreload&#39;</span><span class="p">)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;Pnet&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">net</span> <span class="o">=</span> <span class="n">reactome</span><span class="o">.</span><span class="n">ReactomeNetwork</span><span class="p">(</span><span class="n">genes_of_interest</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;BRCA1&#39;</span> <span class="p">,</span> <span class="s1">&#39;BRCA2&#39;</span> <span class="p">,</span> <span class="s1">&#39;CCNH&#39;</span> <span class="p">,</span> <span class="s1">&#39;CCNT1&#39;</span> <span class="p">]</span> <span class="p">,</span> <span class="n">n_levels</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gene_mask</span> <span class="p">,</span> <span class="n">pathway_masks</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">get_masks</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">Pnet</span><span class="o">.</span><span class="n">PNET</span><span class="p">(</span><span class="n">reactome_network</span><span class="o">=</span><span class="n">net</span><span class="p">,</span> <span class="n">input_dim</span><span class="o">=</span><span class="mi">3</span> <span class="p">,</span> <span class="n">output_dim</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PNET(
+  (activation): ReLU()
+  (dropout): Dropout(p=0.1, inplace=False)
+  (layers): ModuleList(
+    (0): Linear(in_features=3, out_features=4, bias=True)
+    (1): MaskedLinear(in_features=4, out_features=12, bias=True)
+    (2): MaskedLinear(in_features=12, out_features=25, bias=True)
+    (3): MaskedLinear(in_features=25, out_features=24, bias=True)
+    (4): MaskedLinear(in_features=24, out_features=13, bias=True)
+  )
+  (skip): ModuleList(
+    (0): Linear(in_features=4, out_features=10, bias=True)
+    (1): Linear(in_features=12, out_features=10, bias=True)
+    (2): Linear(in_features=25, out_features=10, bias=True)
+    (3): Linear(in_features=24, out_features=10, bias=True)
+    (4): Linear(in_features=13, out_features=10, bias=True)
+  )
+)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+<span class="kn">import</span> <span class="nn">torch.optim</span> <span class="k">as</span> <span class="nn">optim</span>
+
+<span class="c1"># Step 1: Generate random data</span>
+<span class="c1"># Let&#39;s create a dataset with 100 samples, each having 5 features</span>
+<span class="n">input_size</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">output_size</span> <span class="o">=</span> <span class="mi">16</span>
+<span class="n">num_samples</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;cuda&#39;</span><span class="p">)</span>
+
+<span class="c1"># Random input data and target values</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">num_samples</span><span class="p">,</span> <span class="n">input_size</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">num_samples</span><span class="p">,</span> <span class="n">output_size</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">Pnet</span><span class="o">.</span><span class="n">PNET</span><span class="p">(</span><span class="n">reactome_network</span><span class="o">=</span><span class="n">net</span><span class="p">,</span> <span class="n">input_dim</span><span class="o">=</span><span class="mi">3</span> <span class="p">,</span> <span class="n">output_dim</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+<span class="c1"># Step 3: Define loss function and optimizer</span>
+<span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">()</span>  <span class="c1"># Mean Squared Error Loss</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>  <span class="c1"># Stochastic Gradient Descent</span>
+
+<span class="c1"># Step 4: Train the model</span>
+<span class="n">num_epochs</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_epochs</span><span class="p">):</span>
+    <span class="c1"># Forward pass: compute the model output</span>
+    <span class="c1"># Check if the tensor elements are close to zero</span>
+    <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    
+    <span class="c1"># Backward pass: compute gradients</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+    <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+    
+    <span class="c1"># Update the weights</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+
+    <span class="c1"># Print loss every 10 epochs</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">epoch</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Epoch [</span><span class="si">{</span><span class="n">epoch</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">num_epochs</span><span class="si">}</span><span class="s1">], Loss: </span><span class="si">{</span><span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    
+<span class="c1"># Example output after training</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Training completed.&quot;</span><span class="p">)</span>
+<span class="n">example_input</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">input_size</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+<span class="n">example_output</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">example_input</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Example input:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">example_input</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Example output:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">example_output</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch [10/100], Loss: 1.0476
+Epoch [20/100], Loss: 1.0474
+Epoch [30/100], Loss: 1.0473
+Epoch [40/100], Loss: 1.0471
+Epoch [50/100], Loss: 1.0469
+Epoch [60/100], Loss: 1.0467
+Epoch [70/100], Loss: 1.0466
+Epoch [80/100], Loss: 1.0464
+Epoch [90/100], Loss: 1.0462
+Epoch [100/100], Loss: 1.0461
+
+Training completed.
+Example input:
+ tensor([[-0.5910, -0.5932,  0.9589]], device=&#39;cuda:0&#39;)
+Example output:
+ tensor([[ 0.0062,  0.1031,  0.1174,  0.0339, -0.0412, -0.0397,  0.1149, -0.0813,
+          0.0408, -0.0029, -0.0264,  0.1323,  0.0407, -0.0191,  0.0879, -0.0251]],
+       device=&#39;cuda:0&#39;, grad_fn=&lt;DivBackward0&gt;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">captum</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dl</span> <span class="o">=</span> <span class="n">captum</span><span class="o">.</span><span class="n">attr</span><span class="o">.</span><span class="n">DeepLift</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+<span class="n">gene_importances</span> <span class="o">=</span> <span class="n">dl</span><span class="o">.</span><span class="n">attribute</span><span class="p">((</span><span class="n">X</span><span class="p">),</span> <span class="n">target</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/barryryan/anaconda3/lib/python3.11/site-packages/captum/_utils/gradient.py:57: UserWarning: Input Tensor 0 did not already require gradients, required_grads has been set automatically.
+  warnings.warn(
+/Users/barryryan/anaconda3/lib/python3.11/site-packages/captum/attr/_core/deep_lift.py:304: UserWarning: Setting forward, backward hooks and attributes on non-linear
+               activations. The hooks and attributes will be removed
+            after the attribution is finished
+  warnings.warn(
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gene_importances</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>torch.Size([100, 3])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">deepLIFT</span><span class="p">(</span><span class="n">X</span> <span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">58</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">model</span><span class="o">.</span><span class="n">deepLIFT</span><span class="p">(</span><span class="n">X</span> <span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="nn">File ~/Library/CloudStorage/OneDrive-UniversityofEdinburgh/PhD_Research/Year3/Python/PNet/Custom_PNet/Pnet.py:162,</span> in <span class="ni">PNET.deepLIFT</span><span class="nt">(self, test_dataset, target_class)</span>
+<span class="g g-Whitespace">    </span><span class="mi">160</span> <span class="bp">self</span><span class="o">.</span><span class="n">interpret_flag</span><span class="o">=</span><span class="kc">True</span>
+<span class="g g-Whitespace">    </span><span class="mi">161</span> <span class="n">dl</span> <span class="o">=</span> <span class="n">captum</span><span class="o">.</span><span class="n">attr</span><span class="o">.</span><span class="n">DeepLift</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">162</span> <span class="n">gene_importances</span> <span class="o">=</span> <span class="n">dl</span><span class="o">.</span><span class="n">attribute</span><span class="p">((</span><span class="n">test_dataset</span><span class="o">.</span><span class="n">x</span><span class="p">),</span> <span class="n">target</span><span class="o">=</span><span class="n">target_class</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">163</span> <span class="n">gene_importances</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">gene_importances</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span>
+<span class="g g-Whitespace">    </span><span class="mi">164</span>                                 <span class="n">index</span><span class="o">=</span><span class="n">test_dataset</span><span class="o">.</span><span class="n">input_df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">165</span>                                 <span class="n">columns</span><span class="o">=</span><span class="n">test_dataset</span><span class="o">.</span><span class="n">input_df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">167</span> <span class="bp">self</span><span class="o">.</span><span class="n">gene_importances</span> <span class="o">=</span> <span class="n">gene_importances</span>
+
+<span class="ne">AttributeError</span>: &#39;Tensor&#39; object has no attribute &#39;x&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">interpret_flag</span><span class="o">=</span><span class="kc">True</span>
+<span class="n">ig</span> <span class="o">=</span> <span class="n">captum</span><span class="o">.</span><span class="n">attr</span><span class="o">.</span><span class="n">IntegratedGradients</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+<span class="n">ig_attr</span><span class="p">,</span> <span class="n">delta</span> <span class="o">=</span> <span class="n">ig</span><span class="o">.</span><span class="n">attribute</span><span class="p">((</span><span class="n">X</span><span class="p">),</span> <span class="n">return_convergence_delta</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">gene_importances</span> <span class="o">=</span> <span class="n">ig_attr</span>
+<span class="n">gene_importances</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">gene_importances</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MaskedLinear(in_features=4, out_features=12, bias=True)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">interpret_flag</span><span class="o">=</span><span class="kc">True</span>
+<span class="n">layer_importance_scores</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">cond</span> <span class="o">=</span> <span class="n">captum</span><span class="o">.</span><span class="n">attr</span><span class="o">.</span><span class="n">LayerConductance</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># ReLU output of masked layer at each level</span>
+<span class="n">cond_vals</span> <span class="o">=</span> <span class="n">cond</span><span class="o">.</span><span class="n">attribute</span><span class="p">((</span><span class="n">X</span><span class="p">),</span> <span class="n">target</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">reactome_network</span><span class="o">.</span><span class="n">pathway_encoding</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;ID&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">col</span><span class="p">][</span><span class="s1">&#39;pathway&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reactome_network</span><span class="o">.</span><span class="n">pathway_layers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+<span class="n">cond_vals_genomic</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cond_vals</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span>
+                                 <span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="p">,</span>
+                                 <span class="n">index</span><span class="o">=</span><span class="n">test_dataset</span><span class="o">.</span><span class="n">input_df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">pathway_imp_by_target</span> <span class="o">=</span> <span class="n">cond_vals_genomic</span>
+<span class="n">layer_importance_scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pathway_imp_by_target</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">level</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layers</span><span class="p">):</span>
+    <span class="n">cond</span> <span class="o">=</span> <span class="n">captum</span><span class="o">.</span><span class="n">attr</span><span class="o">.</span><span class="n">LayerConductance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="o">.</span><span class="n">pathway_layer</span><span class="p">)</span>  <span class="c1"># ReLU output of masked layer at each level</span>
+    <span class="n">cond_vals</span> <span class="o">=</span> <span class="n">cond</span><span class="o">.</span><span class="n">attribute</span><span class="p">((</span><span class="n">test_dataset</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">test_dataset</span><span class="o">.</span><span class="n">additional</span><span class="p">),</span> <span class="n">target</span><span class="o">=</span><span class="n">target_class</span><span class="p">)</span>
+    <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">reactome_network</span><span class="o">.</span><span class="n">pathway_encoding</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;ID&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">col</span><span class="p">][</span><span class="s1">&#39;pathway&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reactome_network</span><span class="o">.</span><span class="n">pathway_layers</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+    <span class="n">cond_vals_genomic</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cond_vals</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span>
+                                     <span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="p">,</span>
+                                     <span class="n">index</span><span class="o">=</span><span class="n">test_dataset</span><span class="o">.</span><span class="n">input_df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+    <span class="n">pathway_imp_by_target</span> <span class="o">=</span> <span class="n">cond_vals_genomic</span>
+    <span class="n">layer_importance_scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pathway_imp_by_target</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">interpret_flag</span><span class="o">=</span><span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">77</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">cond</span> <span class="o">=</span> <span class="n">captum</span><span class="o">.</span><span class="n">attr</span><span class="o">.</span><span class="n">LayerConductance</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># ReLU output of masked layer at each level</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">cond_vals</span> <span class="o">=</span> <span class="n">cond</span><span class="o">.</span><span class="n">attribute</span><span class="p">((</span><span class="n">X</span><span class="p">),</span> <span class="n">target</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">reactome_network</span><span class="o">.</span><span class="n">pathway_encoding</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;ID&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">col</span><span class="p">][</span><span class="s1">&#39;pathway&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reactome_network</span><span class="o">.</span><span class="n">pathway_layers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">cond_vals_genomic</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cond_vals</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>                                  <span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span>                                  <span class="n">index</span><span class="o">=</span><span class="n">test_dataset</span><span class="o">.</span><span class="n">input_df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">pathway_imp_by_target</span> <span class="o">=</span> <span class="n">cond_vals_genomic</span>
+
+<span class="ne">NameError</span>: name &#39;self&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cond_vals</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>torch.Size([100, 12])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">layerwise_activation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">test_dataset</span><span class="p">,</span> <span class="n">target_class</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">interpret_flag</span><span class="o">=</span><span class="kc">True</span>
+    <span class="n">layer_importance_scores</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">level</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layers</span><span class="p">):</span>
+        <span class="n">act</span> <span class="o">=</span> <span class="n">captum</span><span class="o">.</span><span class="n">attr</span><span class="o">.</span><span class="n">LayerActivation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="o">.</span><span class="n">pathway_layer</span><span class="p">)</span>
+        <span class="n">act_vals</span> <span class="o">=</span> <span class="n">act</span><span class="o">.</span><span class="n">attribute</span><span class="p">((</span><span class="n">test_dataset</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">test_dataset</span><span class="o">.</span><span class="n">additional</span><span class="p">),</span> <span class="n">attribute_to_layer_input</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">reactome_network</span><span class="o">.</span><span class="n">pathway_encoding</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;ID&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">col</span><span class="p">][</span><span class="s1">&#39;pathway&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reactome_network</span><span class="o">.</span><span class="n">pathway_layers</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+        <span class="n">act_vals_genomic</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">act_vals</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span>
+                                        <span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="p">,</span>
+                                        <span class="n">index</span><span class="o">=</span><span class="n">test_dataset</span><span class="o">.</span><span class="n">input_df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+        <span class="n">pathway_imp_by_target</span> <span class="o">=</span> <span class="n">act_vals_genomic</span>
+        <span class="n">layer_importance_scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pathway_imp_by_target</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">interpret_flag</span><span class="o">=</span><span class="kc">False</span>
+    <span class="k">return</span> <span class="n">layer_importance_scores</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./PNetTorch"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

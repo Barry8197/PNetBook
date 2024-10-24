@@ -21,7 +21,7 @@ bibtex_bibfiles:
 
 # Information about where the book exists on the web
 repository:
-  url: https://github.com/executablebooks/jupyter-book  # Online location of your book
+  url: https://github.com/Barry8197/PNetTorch  # Online location of your book
   path_to_book: docs  # Optional path to your book, relative to the repository root
   branch: master  # Which branch of the repository should be used when creating links (optional)
 
@@ -32,5 +32,33 @@ html:
   use_repository_button: true
   
 sphinx:
+  extra_extensions:
+  - 'sphinx.ext.autodoc'
+  - 'sphinx.ext.napoleon'
+  - 'sphinx.ext.viewcode'
   config:
     html_theme: sphinx_rtd_theme
+    html_theme_options: {
+    'version_selector': True,
+    'language_selector': True,
+    # Toc options
+    'collapse_navigation': False,
+    'sticky_navigation': True,
+    'navigation_depth': -1,
+    'includehidden': True,
+    'titles_only': True
+    }
+    html_context: {
+        "display_github": True, # Integrate GitHub
+        "github_user": "Barry8197", # Username
+        "github_repo": "PNetBook", # Repo name
+        "github_version": "master", # Version
+        "conf_py_path": "/_build/html/_sources/", # Path in the checkout to the docs root
+    }
+    add_module_names: True
+    bibtex_reference_style: author_year
+  local_extensions:
+    Pnet : "./PNetTorch/MAIN/"
+    reactome : "./PNetTorch/MAIN/"
+    train : "./PNetTorch/MAIN/"
+    utils : "./PNetTorch/MAIN/"
