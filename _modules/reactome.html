@@ -58,11 +58,16 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="../markdown.html">Markdown Files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../notebooks.html">Content with notebooks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Pages/Scripts.html">PNet Scripts</a></li>
+              <p class="caption" role="heading"><span class="caption-text">PNet Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../PNetTorch/MAIN/Pnet.html">Pnet Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PNetTorch/MAIN/reactome.html">Reactome Pathway Network Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PNetTorch/MAIN/train.html">Training Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PNetTorch/MAIN/utils.html">Utility Functions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../PNetTorch/PNet_Prostate.html">A replication of the results on the Prostate Dataset from PNet </a></li>
 </ul>
 
         </div>
@@ -104,6 +109,15 @@
 <span class="n">pathway_names</span> <span class="o">=</span> <span class="s1">&#39;ReactomePathways.txt&#39;</span>
 <span class="n">pathway_genes</span> <span class="o">=</span> <span class="s1">&#39;ReactomePathways.gmt&#39;</span>
 
+<span class="k">def</span> <span class="nf">get_nodes_at_level</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">distance</span><span class="p">):</span>
+    <span class="c1"># get all nodes within distance around the query node</span>
+    <span class="n">nodes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">ego_graph</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="s1">&#39;root&#39;</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="n">distance</span><span class="p">))</span>
+
+    <span class="c1"># remove nodes that are not **at** the specified distance but closer</span>
+    <span class="k">if</span> <span class="n">distance</span> <span class="o">&gt;=</span> <span class="mf">1.</span><span class="p">:</span>
+        <span class="n">nodes</span> <span class="o">-=</span> <span class="nb">set</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">ego_graph</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="s1">&#39;root&#39;</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="n">distance</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span>
 
 <div class="viewcode-block" id="add_edges">
 <a class="viewcode-back" href="../PNetTorch/MAIN/reactome.html#reactome.add_edges">[docs]</a>
@@ -180,8 +194,7 @@
 <span class="sd">        &gt;&gt;&gt; completed_G = complete_network(G, n_leveles=5)</span>
 <span class="sd">        This modifies the graph by potentially adding additional nodes and edges to ensure that </span>
 <span class="sd">        each path from &#39;root&#39; reaches a total depth of 5.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    
+<span class="sd">    &quot;&quot;&quot;</span> 
     <span class="n">sub_graph</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">ego_graph</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="s1">&#39;root&#39;</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="n">n_leveles</span><span class="p">)</span>
     <span class="n">terminal_nodes</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">sub_graph</span><span class="o">.</span><span class="n">out_degree</span><span class="p">()</span> <span class="k">if</span> <span class="n">d</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
     <span class="n">distances</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">shortest_path</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="s1">&#39;root&#39;</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">node</span><span class="p">))</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">terminal_nodes</span><span class="p">]</span>

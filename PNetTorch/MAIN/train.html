@@ -37,7 +37,7 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Utility Function Module" href="utils.html" />
+    <link rel="next" title="Utility Functions" href="utils.html" />
     <link rel="prev" title="Reactome Pathway Network Module" href="reactome.html" /> 
 </head>
 
@@ -61,17 +61,16 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../markdown.html">Markdown Files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../notebooks.html">Content with notebooks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../../Pages/Scripts.html">PNet Scripts</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="Pnet.html">Pnet Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reactome.html">Reactome Pathway Network Module</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Training Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="utils.html">Utility Function Module</a></li>
+              <p class="caption" role="heading"><span class="caption-text">PNet Modules</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Pnet.html">Pnet Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reactome.html">Reactome Pathway Network Module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Training Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">Utility Functions</a></li>
 </ul>
-</li>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../PNet_Prostate.html">A replication of the results on the Prostate Dataset from PNet </a></li>
 </ul>
 
         </div>
@@ -88,10 +87,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../intro.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../../Pages/Scripts.html">PNet Scripts</a></li>
       <li class="breadcrumb-item active">Training Module</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../_sources/PNetTorch/MAIN/train.rst" rel="nofollow"> View page source</a>
+              <a href="https://github.com/Barry8197/PNetBook/blob/master/_build/html/_sources/PNetTorch/MAIN/train.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -101,6 +99,68 @@
              
   <section id="module-train">
 <span id="training-module"></span><h1>Training Module<a class="headerlink" href="#module-train" title="Link to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="train.evaluate">
+<span class="sig-prename descclassname"><span class="pre">train.</span></span><span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_loader</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/train.html#evaluate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#train.evaluate" title="Link to this definition"></a></dt>
+<dd><p>Evaluates the performance of a trained model on a test set, given that the labels are one-hot encoded.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> – Trained model to be evaluated.</p></li>
+<li><p><strong>test_loader</strong> (<em>DataLoader</em>) – DataLoader containing the test data with one-hot encoded labels.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Classification report for the evaluation.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">MyModel</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">my_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">report</span> <span class="o">=</span> <span class="n">evaluate</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">test_loader</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">report</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="train.train">
+<span class="sig-prename descclassname"><span class="pre">train.</span></span><span class="sig-name descname"><span class="pre">train</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_arrray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">learning_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr_decay</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_epochs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sparse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/train.html#train"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#train.train" title="Link to this definition"></a></dt>
+<dd><p>Trains a given model with specified parameters and data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> – Model to be trained.</p></li>
+<li><p><strong>input_array</strong> (<em>numpy.ndarray</em>) – Input features array.</p></li>
+<li><p><strong>labels</strong> (<em>numpy.ndarray</em>) – Corresponding labels array.</p></li>
+<li><p><strong>device</strong> (<em>torch.device</em>) – Device to which tensors should be transferred (‘cuda’ or ‘cpu’).</p></li>
+<li><p><strong>batch_size</strong> (<em>int</em><em>, </em><em>optional</em>) – Batch size used for training. Defaults to 64.</p></li>
+<li><p><strong>learning_rate</strong> (<em>float</em><em>, </em><em>optional</em>) – Initial learning rate for the optimizer. Defaults to 0.01.</p></li>
+<li><p><strong>lr_decay</strong> (<em>float</em><em>, </em><em>optional</em>) – Decay rate for learning rate adjustment. Defaults to 0.1.</p></li>
+<li><p><strong>num_epochs</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of epochs to train the model. Defaults to 10.</p></li>
+<li><p><strong>sparse</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <cite>True</cite>, uses SGD instead of Adam for optimization. Defaults to False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>Tuple containing:</dt><dd><ul class="simple">
+<li><p>model: Trained model.</p></li>
+<li><p>train_loader (DataLoader): DataLoader for the training data.</p></li>
+<li><p>test_loader (DataLoader): DataLoader for the testing data.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
     <script type="text/x-thebe-config">
@@ -127,7 +187,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="reactome.html" class="btn btn-neutral float-left" title="Reactome Pathway Network Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="utils.html" class="btn btn-neutral float-right" title="Utility Function Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="utils.html" class="btn btn-neutral float-right" title="Utility Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

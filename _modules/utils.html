@@ -58,11 +58,16 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="../markdown.html">Markdown Files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../notebooks.html">Content with notebooks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Pages/Scripts.html">PNet Scripts</a></li>
+              <p class="caption" role="heading"><span class="caption-text">PNet Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../PNetTorch/MAIN/Pnet.html">Pnet Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PNetTorch/MAIN/reactome.html">Reactome Pathway Network Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PNetTorch/MAIN/train.html">Training Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PNetTorch/MAIN/utils.html">Utility Functions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../PNetTorch/PNet_Prostate.html">A replication of the results on the Prostate Dataset from PNet </a></li>
 </ul>
 
         </div>
@@ -126,9 +131,6 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            pd.DataFrame: A DataFrame with columns &#39;group&#39; corresponding to the pathway and &#39;gene&#39; corresponding to the gene.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="kn">import</span> <span class="nn">re</span>
-        <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-        
         <span class="n">data_dict_list</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">gmt</span><span class="p">:</span>
             <span class="n">data_list</span> <span class="o">=</span> <span class="n">gmt</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
@@ -157,8 +159,6 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            dict: A dictionary with pathways as keys and a list of genes as values.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="kn">import</span> <span class="nn">os</span>
-        
         <span class="n">data_dict</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="n">filename</span><span class="p">))</span> <span class="k">as</span> <span class="n">gmt</span><span class="p">:</span>
             <span class="n">data_list</span> <span class="o">=</span> <span class="n">gmt</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
@@ -189,7 +189,6 @@
             <span class="n">gmt</span><span class="o">.</span><span class="n">writelines</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
         <span class="k">return</span></div>
 </div>
-
 
 </pre></div>
 

@@ -1,5 +1,5 @@
-Utility Functions
+Interpret Module
 ==============================================
 
-.. automodule:: utils
+.. automodule:: importance
     :members:
