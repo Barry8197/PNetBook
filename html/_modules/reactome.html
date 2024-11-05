@@ -1,0 +1,433 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>reactome &mdash; PNetTorch</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+      <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/scripts/sphinx-book-theme.js"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script src="../_static/design-tabs.js?v=36754332"></script>
+      <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+      <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../intro.html" class="icon icon-home">
+            Python
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../PNetTorch/PNet_Prostate.html">A replication of the results on the Prostate Dataset from PNet </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PNetTorch/PNet_BRCA.html">Application of PNet to TCGA BRCA</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">PNet Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../PNetTorch/MAIN/Pnet.html">Pnet Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PNetTorch/MAIN/reactome.html">Reactome Pathway Network Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PNetTorch/MAIN/train.html">Training Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PNetTorch/MAIN/utils.html">Utility Functions</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../intro.html">Python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../intro.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Module code</a></li>
+      <li class="breadcrumb-item active">reactome</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for reactome</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">join</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span> <span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="n">GMT</span>
+
+<span class="n">reactome_base_dir</span> <span class="o">=</span> <span class="s1">&#39;./paper_data/pathways/Reactome/&#39;</span>
+<span class="n">relations_file_name</span> <span class="o">=</span> <span class="s1">&#39;ReactomePathwaysRelation.txt&#39;</span>
+<span class="n">pathway_names</span> <span class="o">=</span> <span class="s1">&#39;ReactomePathways.txt&#39;</span>
+<span class="n">pathway_genes</span> <span class="o">=</span> <span class="s1">&#39;ReactomePathways.gmt&#39;</span>
+
+<span class="k">def</span> <span class="nf">get_nodes_at_level</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">distance</span><span class="p">):</span>
+    <span class="c1"># get all nodes within distance around the query node</span>
+    <span class="n">nodes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">ego_graph</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="s1">&#39;root&#39;</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="n">distance</span><span class="p">))</span>
+
+    <span class="c1"># remove nodes that are not **at** the specified distance but closer</span>
+    <span class="k">if</span> <span class="n">distance</span> <span class="o">&gt;=</span> <span class="mf">1.</span><span class="p">:</span>
+        <span class="n">nodes</span> <span class="o">-=</span> <span class="nb">set</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">ego_graph</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="s1">&#39;root&#39;</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="n">distance</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span>
+
+<div class="viewcode-block" id="add_edges">
+<a class="viewcode-back" href="../PNetTorch/MAIN/reactome.html#reactome.add_edges">[docs]</a>
+<span class="k">def</span> <span class="nf">add_edges</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">n_levels</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Adds sequential edges to a graph, creating a chain of nodes extending from an initial node.</span>
+
+<span class="sd">    The function constructs a series of edges starting from a given node, appending increasing</span>
+<span class="sd">    levels to the node name to create subsequent nodes in the sequence. Each node is connected </span>
+<span class="sd">    sequentially to the next, forming a linear progression of edges. These edges are then added</span>
+<span class="sd">    to the graph.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        G (networkx.Graph): The graph to which the edges will be added. This graph must support</span>
+<span class="sd">            the `add_edges_from` method as found in NetworkX graphs.</span>
+<span class="sd">        node (str): The base name of the initial node from which to extend the edges.</span>
+<span class="sd">        n_levels (int): The number of additional levels (i.e., nodes) to create and connect</span>
+<span class="sd">            starting from the initial node. `n_levels` of 1 would mean one additional node </span>
+<span class="sd">            connected to the original.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        networkx.Graph: The graph with the new edges added, linking the series of nodes created</span>
+<span class="sd">        from the base node as described.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        &gt;&gt;&gt; import networkx as nx</span>
+<span class="sd">        &gt;&gt;&gt; G = nx.Graph()</span>
+<span class="sd">        &gt;&gt;&gt; G = add_edges(G, &#39;base_node&#39;, 3)</span>
+<span class="sd">        In this example, edges are added to connect &#39;base_node&#39; to &#39;base_node_copy1&#39;, </span>
+<span class="sd">        &#39;base_node_copy1&#39; to &#39;base_node_copy2&#39;, and &#39;base_node_copy2&#39; to &#39;base_node_copy3&#39;.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">edges</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">source</span> <span class="o">=</span> <span class="n">node</span>
+    <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_levels</span><span class="p">):</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="n">node</span> <span class="o">+</span> <span class="s1">&#39;_copy&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">l</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">edge</span> <span class="o">=</span> <span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+        <span class="n">source</span> <span class="o">=</span> <span class="n">target</span>
+        <span class="n">edges</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">edge</span><span class="p">)</span>
+
+    <span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span><span class="n">edges</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">G</span></div>
+
+
+<div class="viewcode-block" id="complete_network">
+<a class="viewcode-back" href="../PNetTorch/MAIN/reactome.html#reactome.complete_network">[docs]</a>
+<span class="k">def</span> <span class="nf">complete_network</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">n_leveles</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Completes a network from a specified root node to ensure all paths extend to a specified depth.</span>
+
+<span class="sd">    This function extends the paths in a graph starting from a &#39;root&#39; node to make each terminal </span>
+<span class="sd">    path reach a specific depth, measured in number of levels. Terminal paths shorter than the </span>
+<span class="sd">    requested depth are extended accordingly.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        G (networkx.DiGraph or networkx.Graph): The graph on which operations will be performed. </span>
+<span class="sd">            This graph should be directed to correctly calculate out-degrees and path lengths.</span>
+<span class="sd">        n_leveles (int, optional): The desired minimum depth of all paths starting from the </span>
+<span class="sd">            &#39;root&#39; node. Default value is 4.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        networkx.Graph: A subgraph of `G` containing nodes within the specified radius from &#39;root&#39; </span>
+<span class="sd">        and extended paths to match the desired levels if they are originally shorter.</span>
+
+<span class="sd">    Notes:</span>
+<span class="sd">        - The paths are not extended if they already meet or exceed the number of &#39;n_leveles&#39;.</span>
+<span class="sd">        - It is assumed there are no cycles from &#39;root&#39; to any of its descendants since this would</span>
+<span class="sd">          imply infinite paths upon attempting to reach the depth specified by &#39;n_leveles&#39;.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        &gt;&gt;&gt; import networkx as nx</span>
+<span class="sd">        &gt;&gt;&gt; G = nx.DiGraph()</span>
+<span class="sd">        &gt;&gt;&gt; G.add_edge(&#39;root&#39;, &#39;level_1&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; G.add_edge(&#39;level_1&#39;, &#39;level_2&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; completed_G = complete_network(G, n_leveles=5)</span>
+<span class="sd">        This modifies the graph by potentially adding additional nodes and edges to ensure that </span>
+<span class="sd">        each path from &#39;root&#39; reaches a total depth of 5.</span>
+<span class="sd">    &quot;&quot;&quot;</span> 
+    <span class="n">sub_graph</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">ego_graph</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="s1">&#39;root&#39;</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="n">n_leveles</span><span class="p">)</span>
+    <span class="n">terminal_nodes</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">sub_graph</span><span class="o">.</span><span class="n">out_degree</span><span class="p">()</span> <span class="k">if</span> <span class="n">d</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">distances</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">shortest_path</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="s1">&#39;root&#39;</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">node</span><span class="p">))</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">terminal_nodes</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">terminal_nodes</span><span class="p">:</span>
+        <span class="n">distance</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">shortest_path</span><span class="p">(</span><span class="n">sub_graph</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="s1">&#39;root&#39;</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">node</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">distance</span> <span class="o">&lt;=</span> <span class="n">n_leveles</span><span class="p">:</span>
+            <span class="n">diff</span> <span class="o">=</span> <span class="n">n_leveles</span> <span class="o">-</span> <span class="n">distance</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">sub_graph</span> <span class="o">=</span> <span class="n">add_edges</span><span class="p">(</span><span class="n">sub_graph</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">diff</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">sub_graph</span></div>
+
+
+<div class="viewcode-block" id="get_layers_from_net">
+<a class="viewcode-back" href="../PNetTorch/MAIN/reactome.html#reactome.get_layers_from_net">[docs]</a>
+<span class="k">def</span> <span class="nf">get_layers_from_net</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">n_levels</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extracts node information layer by layer up to a specified depth from a given network.</span>
+
+<span class="sd">    This function traverses a network structure at given depths (levels), extracting the nodes at each level</span>
+<span class="sd">    and their immediate successors. The function focuses on the original name of nodes by removing any suffixes</span>
+<span class="sd">    that indicate copies or duplications, grouping the successors similarly.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        net (networkx.DiGraph): The directed graph from which nodes and their relationships are extracted.</span>
+<span class="sd">            The graph is expected to have nodes potentially labeled with suffixes indicating layers or copies.</span>
+<span class="sd">        n_levels (int): The number of levels to traverse in the net structure, starting from level 0, which </span>
+<span class="sd">            is often considered the root or initial level.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        List[dict]: A list of dictionaries, where each dictionary represents a layer in the network.</span>
+<span class="sd">            The keys of the dictionary are the node names (with copy suffixes removed), and the values</span>
+<span class="sd">            are lists of immediate successor node names (also with copy suffixes removed).</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        &gt;&gt;&gt; import networkx as nx</span>
+<span class="sd">        &gt;&gt;&gt; net = nx.DiGraph()</span>
+<span class="sd">        &gt;&gt;&gt; net.add_edge(&#39;root&#39;, &#39;node1_copy1&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; net.add_edge(&#39;root&#39;, &#39;node2_copy1&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; net.add_edge(&#39;node1_copy1&#39;, &#39;node3_copy2&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; layers = get_layers_from_net(net, 2)</span>
+<span class="sd">        &gt;&gt;&gt; print(layers)</span>
+<span class="sd">        [{&#39;root&#39;: [&#39;node1&#39;, &#39;node2&#39;]}, {&#39;node1&#39;: [&#39;node3&#39;]}]</span>
+<span class="sd">        </span>
+<span class="sd">    Note:</span>
+<span class="sd">        This function handles networks where nodes may have copies or are</span>
+<span class="sd">        duplicated at various levels, and names contain suffixes indicating such duplication. This results from the fact</span>
+<span class="sd">        that pathways can be included in more than 1 level if they are involved in different levels of different pathways</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">layers</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_levels</span><span class="p">):</span>
+        <span class="n">nodes</span> <span class="o">=</span> <span class="n">get_nodes_at_level</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+        <span class="n">layer_dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">:</span>
+            <span class="n">n_name</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;_copy.*&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+            <span class="n">successors</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">successors</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+            <span class="n">layer_dict</span><span class="p">[</span><span class="n">n_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;_copy.*&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">suc</span><span class="p">)</span> <span class="k">for</span> <span class="n">suc</span> <span class="ow">in</span> <span class="n">successors</span><span class="p">]</span>
+        <span class="n">layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">layer_dict</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">layers</span></div>
+
+
+
+<span class="k">class</span> <span class="nc">Reactome</span><span class="p">():</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pathway_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_names</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hierarchy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_hierarchy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pathway_genes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_genes</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">load_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="n">reactome_base_dir</span><span class="p">,</span> <span class="n">pathway_names</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;reactome_id&#39;</span><span class="p">,</span> <span class="s1">&#39;pathway_name&#39;</span><span class="p">,</span> <span class="s1">&#39;species&#39;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">df</span>
+
+    <span class="k">def</span> <span class="nf">load_genes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="n">reactome_base_dir</span><span class="p">,</span> <span class="n">pathway_genes</span><span class="p">)</span>
+        <span class="n">gmt</span> <span class="o">=</span> <span class="n">GMT</span><span class="p">()</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">gmt</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">pathway_col</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">genes_col</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">df</span>
+
+    <span class="k">def</span> <span class="nf">load_hierarchy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="n">reactome_base_dir</span><span class="p">,</span> <span class="n">relations_file_name</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;child&#39;</span><span class="p">,</span> <span class="s1">&#39;parent&#39;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">df</span>
+
+
+<span class="k">class</span> <span class="nc">ReactomeNetwork</span><span class="p">():</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span> <span class="p">,</span> <span class="n">genes_of_interest</span> <span class="o">=</span> <span class="kc">None</span> <span class="p">,</span> <span class="n">n_levels</span> <span class="o">=</span> <span class="mi">5</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reactome</span> <span class="o">=</span> <span class="n">Reactome</span><span class="p">()</span>  <span class="c1"># low level access to reactome pathways and genes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">netx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_reactome_networkx</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">genes_of_interest</span> <span class="o">=</span> <span class="n">genes_of_interest</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_levels</span> <span class="o">=</span> <span class="n">n_levels</span>
+
+    <span class="k">def</span> <span class="nf">get_terminals</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">terminal_nodes</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">netx</span><span class="o">.</span><span class="n">out_degree</span><span class="p">()</span> <span class="k">if</span> <span class="n">d</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">terminal_nodes</span>
+
+    <span class="k">def</span> <span class="nf">get_roots</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="n">roots</span> <span class="o">=</span> <span class="n">get_nodes_at_level</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">netx</span><span class="p">,</span> <span class="n">distance</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">roots</span>
+
+    <span class="c1"># get a DiGraph representation of the Reactome hierarchy</span>
+    <span class="k">def</span> <span class="nf">get_reactome_networkx</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;netx&#39;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">netx</span>
+        <span class="n">hierarchy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reactome</span><span class="o">.</span><span class="n">hierarchy</span>
+        <span class="c1"># filter hierarchy to have human pathways only</span>
+        <span class="n">human_hierarchy</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="p">[</span><span class="n">hierarchy</span><span class="p">[</span><span class="s1">&#39;child&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;HSA&#39;</span><span class="p">)]</span>
+        <span class="n">net</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">from_pandas_edgelist</span><span class="p">(</span><span class="n">human_hierarchy</span><span class="p">,</span> <span class="s1">&#39;child&#39;</span><span class="p">,</span> <span class="s1">&#39;parent&#39;</span><span class="p">,</span> <span class="n">create_using</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">())</span>
+        <span class="n">net</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;reactome&#39;</span>
+
+        <span class="c1"># add root node</span>
+        <span class="n">roots</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">net</span><span class="o">.</span><span class="n">in_degree</span><span class="p">()</span> <span class="k">if</span> <span class="n">d</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">root_node</span> <span class="o">=</span> <span class="s1">&#39;root&#39;</span>
+        <span class="n">edges</span> <span class="o">=</span> <span class="p">[(</span><span class="n">root_node</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">roots</span><span class="p">]</span>
+        <span class="n">net</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span><span class="n">edges</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">net</span>
+
+    <span class="k">def</span> <span class="nf">info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">nx</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">netx</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_tree</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="c1"># convert to tree</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">bfs_tree</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">netx</span><span class="p">,</span> <span class="s1">&#39;root&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">G</span>
+
+    <span class="k">def</span> <span class="nf">get_completed_network</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">complete_network</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">netx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_levels</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">G</span>
+
+    <span class="k">def</span> <span class="nf">get_completed_tree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_levels</span><span class="p">):</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_tree</span><span class="p">()</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">complete_network</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">n_leveles</span><span class="o">=</span><span class="n">n_levels</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">G</span>
+    
+    <span class="k">def</span> <span class="nf">get_pathway_masks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pathways_of_interest</span><span class="o">=</span><span class="nb">list</span><span class="p">())</span> <span class="p">:</span>
+        <span class="n">net</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_completed_network</span><span class="p">()</span>
+        
+        <span class="n">adj_matrix</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">adjacency_matrix</span><span class="p">(</span><span class="n">net</span><span class="p">)</span>
+        <span class="c1"># Convert to a pandas DataFrame</span>
+        <span class="n">df_adj_matrix</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">adj_matrix</span><span class="o">.</span><span class="n">toarray</span><span class="p">(),</span> <span class="n">index</span><span class="o">=</span><span class="n">net</span><span class="o">.</span><span class="n">nodes</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="n">net</span><span class="o">.</span><span class="n">nodes</span><span class="p">())</span>
+
+        <span class="n">pathway_masks</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">pathways_of_interest</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">pathways_of_interest</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">n_levels</span><span class="p">)</span> <span class="p">:</span> 
+            <span class="k">if</span> <span class="n">pathways_of_interest</span> <span class="p">:</span>
+                <span class="n">root_level_genes</span>  <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">get_nodes_at_level</span><span class="p">(</span><span class="n">net</span> <span class="p">,</span> <span class="n">i</span><span class="p">))</span>   <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">pathways_of_interest</span><span class="p">))</span>
+                <span class="n">upper_level_genes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">get_nodes_at_level</span><span class="p">(</span><span class="n">net</span> <span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">pathways_of_interest</span><span class="p">))</span>
+                <span class="n">mask</span> <span class="o">=</span> <span class="n">df_adj_matrix</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">root_level_genes</span><span class="p">,</span><span class="n">upper_level_genes</span><span class="p">]</span>
+                <span class="n">mask</span><span class="o">.</span><span class="n">index</span>   <span class="o">=</span> <span class="p">[</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;_copy.*&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">mask</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+                <span class="n">mask</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;_copy.*&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">mask</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+                <span class="n">pathway_masks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span>
+            <span class="k">else</span> <span class="p">:</span> 
+                <span class="n">mask</span> <span class="o">=</span> <span class="n">df_adj_matrix</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">get_nodes_at_level</span><span class="p">(</span><span class="n">net</span> <span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="p">,</span> <span class="n">get_nodes_at_level</span><span class="p">(</span><span class="n">net</span> <span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+                <span class="n">mask</span><span class="o">.</span><span class="n">index</span>   <span class="o">=</span> <span class="p">[</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;_copy.*&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">mask</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+                <span class="n">mask</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;_copy.*&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">mask</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+                <span class="n">pathway_masks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span>
+             
+        
+        <span class="k">return</span> <span class="n">pathway_masks</span>
+    
+    <span class="k">def</span> <span class="nf">get_gene_mask</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="p">:</span> 
+        <span class="n">df</span>  <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reactome</span><span class="o">.</span><span class="n">pathway_genes</span>
+        <span class="n">net</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_completed_network</span><span class="p">()</span>
+        
+        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">gene_mask</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="s1">&#39;gene&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;group&#39;</span><span class="p">,</span> <span class="n">aggfunc</span><span class="o">=</span><span class="s2">&quot;sum&quot;</span><span class="p">)</span>
+        <span class="n">gene_mask</span> <span class="o">=</span> <span class="n">gene_mask</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="n">cols_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">genes_of_interest</span><span class="p">)</span>
+        <span class="n">gene_mask</span> <span class="o">=</span> <span class="n">cols_df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">gene_mask</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+        <span class="n">gene_mask</span> <span class="o">=</span> <span class="n">gene_mask</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        
+        <span class="n">terminal_nodes</span> <span class="o">=</span> <span class="p">[</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;_copy.*&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">net</span><span class="o">.</span><span class="n">out_degree</span><span class="p">()</span> <span class="k">if</span> <span class="n">d</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>  
+
+        <span class="n">missing_pathways</span>    <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">terminal_nodes</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">gene_mask</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
+        <span class="n">missing_pathways_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">gene_mask</span><span class="o">.</span><span class="n">index</span><span class="p">)</span> <span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">missing_pathways</span><span class="p">)))</span> <span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">gene_mask</span><span class="o">.</span><span class="n">index</span> <span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">missing_pathways</span><span class="p">)</span>
+
+        <span class="n">gene_mask</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">gene_mask</span> <span class="p">,</span> <span class="n">missing_pathways_df</span><span class="p">]</span> <span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">pathways_of_interest</span> <span class="o">=</span> <span class="n">gene_mask</span><span class="o">.</span><span class="n">columns</span>
+        
+        <span class="k">return</span> <span class="n">gene_mask</span>
+    
+    <span class="k">def</span> <span class="nf">get_masks</span><span class="p">(</span><span class="bp">self</span> <span class="p">,</span> <span class="n">filter_pathways</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="p">:</span> 
+        <span class="n">gene_mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_gene_mask</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">filter_pathways</span> <span class="p">:</span> 
+            <span class="n">gene_mask</span> <span class="o">=</span> <span class="n">gene_mask</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">(</span><span class="n">gene_mask</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)]</span>
+            <span class="n">pathway_masks</span> <span class="o">=</span> <span class="p">[</span><span class="n">mask</span><span class="o">.</span><span class="n">T</span> <span class="k">for</span> <span class="n">mask</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_pathway_masks</span><span class="p">(</span><span class="n">gene_mask</span><span class="o">.</span><span class="n">columns</span><span class="p">)]</span>
+        <span class="k">else</span> <span class="p">:</span> 
+            <span class="n">pathway_masks</span> <span class="o">=</span> <span class="p">[</span><span class="n">mask</span><span class="o">.</span><span class="n">T</span> <span class="k">for</span> <span class="n">mask</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_pathway_masks</span><span class="p">()]</span>
+            
+        <span class="n">layer_info</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">gene_mask</span><span class="o">.</span><span class="n">index</span><span class="p">)]</span> <span class="o">+</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">mask</span><span class="o">.</span><span class="n">index</span><span class="p">)</span> <span class="k">for</span> <span class="n">mask</span> <span class="ow">in</span> <span class="n">pathway_masks</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">pathway_masks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">columns</span><span class="p">)]</span>
+        
+        <span class="n">gene_mask</span> <span class="o">=</span> <span class="n">gene_mask</span><span class="o">.</span><span class="n">loc</span><span class="p">[:</span> <span class="p">,</span> <span class="n">pathway_masks</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+        <span class="n">pathway_masks</span> <span class="o">=</span> <span class="p">[</span><span class="n">mask</span><span class="o">.</span><span class="n">values</span> <span class="k">for</span> <span class="n">mask</span> <span class="ow">in</span> <span class="n">pathway_masks</span><span class="p">]</span>
+        
+        <span class="k">return</span> <span class="n">gene_mask</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">pathway_masks</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">layer_info</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

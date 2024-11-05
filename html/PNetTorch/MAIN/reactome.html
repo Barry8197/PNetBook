@@ -1,0 +1,281 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reactome Pathway Network Module &mdash; PNetTorch</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+      <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../_static/scripts/sphinx-book-theme.js"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script src="../../_static/design-tabs.js?v=36754332"></script>
+      <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+      <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Training Module" href="train.html" />
+    <link rel="prev" title="PNet Module" href="Pnet.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../intro.html" class="icon icon-home">
+            Python
+              <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../PNet_Prostate.html">A replication of the results on the Prostate Dataset from PNet </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PNet_BRCA.html">Application of PNet to TCGA BRCA</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">PNet Modules</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Pnet.html">PNet Module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Reactome Pathway Network Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="train.html">Training Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">Utility Functions</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../intro.html">Python</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../intro.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Reactome Pathway Network Module</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/Barry8197/PNetBook/blob/master/_build/html/_sources/PNetTorch/MAIN/reactome.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-reactome">
+<span id="reactome-pathway-network-module"></span><h1>Reactome Pathway Network Module<a class="headerlink" href="#module-reactome" title="Link to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="reactome.add_edges">
+<span class="sig-prename descclassname"><span class="pre">reactome.</span></span><span class="sig-name descname"><span class="pre">add_edges</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_levels</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/reactome.html#add_edges"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#reactome.add_edges" title="Link to this definition"></a></dt>
+<dd><p>Adds sequential edges to a graph, creating a chain of nodes extending from an initial node.</p>
+<p>The function constructs a series of edges starting from a given node, appending increasing
+levels to the node name to create subsequent nodes in the sequence. Each node is connected
+sequentially to the next, forming a linear progression of edges. These edges are then added
+to the graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>G</strong> (<em>networkx.Graph</em>) – The graph to which the edges will be added. This graph must support
+the <cite>add_edges_from</cite> method as found in NetworkX graphs.</p></li>
+<li><p><strong>node</strong> (<em>str</em>) – The base name of the initial node from which to extend the edges.</p></li>
+<li><p><strong>n_levels</strong> (<em>int</em>) – The number of additional levels (i.e., nodes) to create and connect
+starting from the initial node. <cite>n_levels</cite> of 1 would mean one additional node
+connected to the original.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The graph with the new edges added, linking the series of nodes created
+from the base node as described.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>networkx.Graph</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span> <span class="o">=</span> <span class="n">add_edges</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="s1">&#39;base_node&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="go">In this example, edges are added to connect &#39;base_node&#39; to &#39;base_node_copy1&#39;,</span>
+<span class="go">&#39;base_node_copy1&#39; to &#39;base_node_copy2&#39;, and &#39;base_node_copy2&#39; to &#39;base_node_copy3&#39;.</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="reactome.complete_network">
+<span class="sig-prename descclassname"><span class="pre">reactome.</span></span><span class="sig-name descname"><span class="pre">complete_network</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_leveles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/reactome.html#complete_network"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#reactome.complete_network" title="Link to this definition"></a></dt>
+<dd><p>Completes a network from a specified root node to ensure all paths extend to a specified depth.</p>
+<p>This function extends the paths in a graph starting from a ‘root’ node to make each terminal
+path reach a specific depth, measured in number of levels. Terminal paths shorter than the
+requested depth are extended accordingly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>G</strong> (<em>networkx.DiGraph</em><em> or </em><em>networkx.Graph</em>) – The graph on which operations will be performed.
+This graph should be directed to correctly calculate out-degrees and path lengths.</p></li>
+<li><p><strong>n_leveles</strong> (<em>int</em><em>, </em><em>optional</em>) – The desired minimum depth of all paths starting from the
+‘root’ node. Default value is 4.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A subgraph of <cite>G</cite> containing nodes within the specified radius from ‘root’
+and extended paths to match the desired levels if they are originally shorter.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>networkx.Graph</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>The paths are not extended if they already meet or exceed the number of ‘n_leveles’.</p></li>
+<li><p>It is assumed there are no cycles from ‘root’ to any of its descendants since this would
+imply infinite paths upon attempting to reach the depth specified by ‘n_leveles’.</p></li>
+</ul>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s1">&#39;root&#39;</span><span class="p">,</span> <span class="s1">&#39;level_1&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s1">&#39;level_1&#39;</span><span class="p">,</span> <span class="s1">&#39;level_2&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">completed_G</span> <span class="o">=</span> <span class="n">complete_network</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">n_leveles</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="go">This modifies the graph by potentially adding additional nodes and edges to ensure that</span>
+<span class="go">each path from &#39;root&#39; reaches a total depth of 5.</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="reactome.get_layers_from_net">
+<span class="sig-prename descclassname"><span class="pre">reactome.</span></span><span class="sig-name descname"><span class="pre">get_layers_from_net</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_levels</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/reactome.html#get_layers_from_net"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#reactome.get_layers_from_net" title="Link to this definition"></a></dt>
+<dd><p>Extracts node information layer by layer up to a specified depth from a given network.</p>
+<p>This function traverses a network structure at given depths (levels), extracting the nodes at each level
+and their immediate successors. The function focuses on the original name of nodes by removing any suffixes
+that indicate copies or duplications, grouping the successors similarly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>net</strong> (<em>networkx.DiGraph</em>) – The directed graph from which nodes and their relationships are extracted.
+The graph is expected to have nodes potentially labeled with suffixes indicating layers or copies.</p></li>
+<li><p><strong>n_levels</strong> (<em>int</em>) – The number of levels to traverse in the net structure, starting from level 0, which
+is often considered the root or initial level.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A list of dictionaries, where each dictionary represents a layer in the network.</dt><dd><p>The keys of the dictionary are the node names (with copy suffixes removed), and the values
+are lists of immediate successor node names (also with copy suffixes removed).</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[dict]</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">net</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">net</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s1">&#39;root&#39;</span><span class="p">,</span> <span class="s1">&#39;node1_copy1&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">net</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s1">&#39;root&#39;</span><span class="p">,</span> <span class="s1">&#39;node2_copy1&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">net</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s1">&#39;node1_copy1&#39;</span><span class="p">,</span> <span class="s1">&#39;node3_copy2&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">layers</span> <span class="o">=</span> <span class="n">get_layers_from_net</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">layers</span><span class="p">)</span>
+<span class="go">[{&#39;root&#39;: [&#39;node1&#39;, &#39;node2&#39;]}, {&#39;node1&#39;: [&#39;node3&#39;]}]</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This function handles networks where nodes may have copies or are
+duplicated at various levels, and names contain suffixes indicating such duplication. This results from the fact
+that pathways can be included in more than 1 level if they are involved in different levels of different pathways</p>
+</div>
+</dd></dl>
+
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./PNetTorch\MAIN"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Pnet.html" class="btn btn-neutral float-left" title="PNet Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="train.html" class="btn btn-neutral float-right" title="Training Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
