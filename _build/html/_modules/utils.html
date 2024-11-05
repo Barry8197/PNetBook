@@ -58,15 +58,17 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="../Pages/Scripts.html">PNet Scripts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../PNetTorch/MAIN/Pnet.html">Pnet Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../PNetTorch/MAIN/reactome.html">Reactome Pathway Network Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../PNetTorch/MAIN/train.html">Training Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../PNetTorch/MAIN/utils.html">Utility Function Module</a></li>
+              <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../PNetTorch/PNet_Prostate.html">A replication of the results on the Prostate Dataset from PNet </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PNetTorch/PNet_BRCA.html">Application of PNet to TCGA BRCA</a></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../Pages/Examples.html">PNetTorch Examples</a></li>
+<p class="caption" role="heading"><span class="caption-text">PNet Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../PNetTorch/MAIN/Pnet.html">Pnet Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PNetTorch/MAIN/reactome.html">Reactome Pathway Network Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PNetTorch/MAIN/train.html">Training Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PNetTorch/MAIN/utils.html">Utility Functions</a></li>
 </ul>
 
         </div>
@@ -97,6 +99,8 @@
 <span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">torch</span>
 
 <span class="c1"># data_dir = os.path.dirname(__file__)</span>
 <div class="viewcode-block" id="GMT">
@@ -130,9 +134,6 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            pd.DataFrame: A DataFrame with columns &#39;group&#39; corresponding to the pathway and &#39;gene&#39; corresponding to the gene.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="kn">import</span> <span class="nn">re</span>
-        <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-        
         <span class="n">data_dict_list</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">gmt</span><span class="p">:</span>
             <span class="n">data_list</span> <span class="o">=</span> <span class="n">gmt</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
@@ -161,8 +162,6 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            dict: A dictionary with pathways as keys and a list of genes as values.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="kn">import</span> <span class="nn">os</span>
-        
         <span class="n">data_dict</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="n">filename</span><span class="p">))</span> <span class="k">as</span> <span class="n">gmt</span><span class="p">:</span>
             <span class="n">data_list</span> <span class="o">=</span> <span class="n">gmt</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
@@ -194,7 +193,19 @@
         <span class="k">return</span></div>
 </div>
 
+    
+<span class="k">def</span> <span class="nf">numpy_array_to_one_hot</span><span class="p">(</span><span class="n">numpy_array</span><span class="p">,</span> <span class="n">num_classes</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">num_classes</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">num_classes</span> <span class="o">=</span> <span class="n">numpy_array</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">num_classes</span><span class="p">)[</span><span class="n">numpy_array</span><span class="p">]</span>
 
+
+<span class="k">def</span> <span class="nf">get_gpu_memory</span><span class="p">():</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">get_device_properties</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">total_memory</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">*</span><span class="mi">10</span><span class="o">**-</span><span class="mi">9</span><span class="p">)</span>             
+    <span class="n">r</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">memory_reserved</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">*</span><span class="mi">10</span><span class="o">**-</span><span class="mi">9</span><span class="p">)</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">memory_allocated</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">*</span><span class="mi">10</span><span class="o">**-</span><span class="mi">9</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Total = </span><span class="si">%1.1f</span><span class="s2">Gb </span><span class="se">\t</span><span class="s2"> Reserved = </span><span class="si">%1.1f</span><span class="s2">Gb </span><span class="se">\t</span><span class="s2"> Allocated = </span><span class="si">%1.1f</span><span class="s2">Gb&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">a</span><span class="p">))</span>
 </pre></div>
 
            </div>

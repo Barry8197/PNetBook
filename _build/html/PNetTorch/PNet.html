@@ -11,7 +11,7 @@
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
       <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
       <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
 
@@ -59,15 +59,17 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="../Pages/Scripts.html">PNet Scripts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="MAIN/Pnet.html">Pnet Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="MAIN/reactome.html">Reactome Pathway Network Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="MAIN/train.html">Training Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="MAIN/utils.html">Utility Function Module</a></li>
+              <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="PNet_Prostate.html">A replication of the results on the Prostate Dataset from PNet </a></li>
+<li class="toctree-l1"><a class="reference internal" href="PNet_BRCA.html">Application of PNet to TCGA BRCA</a></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../Pages/Examples.html">PNetTorch Examples</a></li>
+<p class="caption" role="heading"><span class="caption-text">PNet Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="MAIN/Pnet.html">PNet Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MAIN/reactome.html">Reactome Pathway Network Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MAIN/train.html">Training Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MAIN/utils.html">Utility Functions</a></li>
 </ul>
 
         </div>
@@ -107,16 +109,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="nn">Input In [1],</span> in <span class="ni">&lt;cell line: 3&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">sys</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span> <span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">reactome</span><span class="o">,</span> <span class="nn">Pnet</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_line_magic</span><span class="p">(</span><span class="s1">&#39;load_ext&#39;</span><span class="p">,</span> <span class="s1">&#39;autoreload&#39;</span><span class="p">)</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;Pnet&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;frozen importlib._bootstrap&gt;:228: RuntimeWarning: scipy._lib.messagestream.MessageStream size changed, may indicate binary incompatibility. Expected 56 from C header, got 64 from PyObject
 </pre></div>
 </div>
 </div>

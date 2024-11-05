@@ -1,4 +1,4 @@
-Utility Function Module
+Utility Functions
 ==============================================
 
 .. automodule:: utils

@@ -3,11 +3,17 @@
 
 format: jb-book
 root: intro
-chapters:
-- file: Pages/Scripts
-  sections: 
-  - file: PNetTorch/MAIN/Pnet
-  - file: PNetTorch/MAIN/reactome
-  - file: PNetTorch/MAIN/train
-  - file: PNetTorch/MAIN/utils
-- file: Pages/Examples
+parts:
+  - caption: Examples
+    numbered: False  
+    chapters:
+    - file: PNetTorch/PNet_Prostate
+    - file: PNetTorch/PNet_BRCA
+  - caption: PNet Modules
+    numbered: False 
+    chapters:
+    - file: PNetTorch/MAIN/Pnet
+    - file: PNetTorch/MAIN/reactome
+    - file: PNetTorch/MAIN/importance
+    - file: PNetTorch/MAIN/train
+    - file: PNetTorch/MAIN/utils

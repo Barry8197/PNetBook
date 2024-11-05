@@ -1,4 +1,4 @@
-Pnet Module
+PNet Module
 ==============================================
 
 .. automodule:: Pnet
