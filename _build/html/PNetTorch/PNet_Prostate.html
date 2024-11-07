@@ -111,6 +111,7 @@
 <span class="kn">from</span> <span class="nn">reactome</span> <span class="kn">import</span> <span class="n">ReactomeNetwork</span>
 <span class="kn">from</span> <span class="nn">Pnet</span> <span class="kn">import</span> <span class="n">MaskedLinear</span> <span class="p">,</span> <span class="n">PNET</span>
 <span class="kn">from</span> <span class="nn">train</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="n">get_gpu_memory</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">gc</span>
 
@@ -703,11 +704,11 @@ WARNING:root:some genes dont exist in the original data set
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MultiIndex([(  &#39;SPR&#39;, &#39;mut_important&#39;),
-            (  &#39;SPR&#39;,       &#39;cnv_del&#39;),
-            (  &#39;SPR&#39;,       &#39;cnv_amp&#39;),
-            (&#39;PAPD4&#39;, &#39;mut_important&#39;),
-            (&#39;PAPD4&#39;,       &#39;cnv_del&#39;)],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MultiIndex([(&#39;CAMTA2&#39;, &#39;mut_important&#39;),
+            (&#39;CAMTA2&#39;,       &#39;cnv_del&#39;),
+            (&#39;CAMTA2&#39;,       &#39;cnv_amp&#39;),
+            (   &#39;BTK&#39;, &#39;mut_important&#39;),
+            (   &#39;BTK&#39;,       &#39;cnv_del&#39;)],
            )
 </pre></div>
 </div>
@@ -744,7 +745,7 @@ WARNING:root:some genes dont exist in the original data set
 
 <span class="c1"># Build PNet model</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">PNET</span><span class="p">(</span><span class="n">reactome_network</span><span class="o">=</span><span class="n">net</span><span class="p">,</span> <span class="n">input_dim</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">,</span> <span class="n">output_dim</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
-                  <span class="n">activation</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Tanh</span><span class="p">,</span> <span class="n">dropout</span><span class="o">=</span><span class="mf">0.3</span> <span class="p">,</span> <span class="n">filter_pathways</span><span class="o">=</span><span class="kc">False</span> <span class="p">,</span> <span class="n">input_layer_mask</span> <span class="o">=</span> <span class="n">input_mask_arr</span><span class="p">)</span>
+                  <span class="n">activation</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">,</span> <span class="n">dropout</span><span class="o">=</span><span class="mf">0.3</span> <span class="p">,</span> <span class="n">filter_pathways</span><span class="o">=</span><span class="kc">False</span> <span class="p">,</span> <span class="n">input_layer_mask</span> <span class="o">=</span> <span class="n">input_mask_arr</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
 
@@ -752,8 +753,8 @@ WARNING:root:some genes dont exist in the original data set
 <span class="n">y</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">one_hot</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">int64</span><span class="p">))</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
 
 <span class="c1"># Train Model</span>
-<span class="n">model</span> <span class="p">,</span> <span class="n">train_loader</span> <span class="p">,</span> <span class="n">test_loader</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="n">model</span> <span class="p">,</span> <span class="n">x</span> <span class="p">,</span> <span class="n">y</span> <span class="p">,</span> <span class="n">device</span> <span class="p">,</span> <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">256</span> <span class="p">,</span> <span class="n">lr_decay</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
-                                                 <span class="n">num_epochs</span><span class="o">=</span><span class="mi">50</span> <span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.01</span> <span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">model</span> <span class="p">,</span> <span class="n">train_loader</span> <span class="p">,</span> <span class="n">test_loader</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="n">model</span> <span class="p">,</span> <span class="n">x</span> <span class="p">,</span> <span class="n">y</span> <span class="p">,</span> <span class="n">device</span> <span class="p">,</span> <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">1024</span> <span class="p">,</span> <span class="n">lr_decay</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+                                                 <span class="n">num_epochs</span><span class="o">=</span><span class="mi">50</span> <span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.1</span> <span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="c1"># Evaluate</span>
 <span class="n">metrics</span> <span class="o">=</span> <span class="n">evaluate</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">test_loader</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">metrics</span><span class="p">)</span>
@@ -780,23 +781,31 @@ WARNING:root:some genes dont exist in the original data set
     (5): Linear(in_features=26, out_features=2, bias=True)
   )
   (act_layers): ModuleList(
-    (0-5): 6 x Tanh()
+    (0-5): 6 x ReLU()
+  )
+  (norm_layers): ModuleList(
+    (0): BatchNorm1d(9229, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (1): BatchNorm1d(1397, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): BatchNorm1d(1066, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (3): BatchNorm1d(447, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (4): BatchNorm1d(147, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): BatchNorm1d(26, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
   )
 )
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 50: 100%|██████████| 50/50 [08:30&lt;00:00, 10.22s/epoch, loss=0.481]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 50: 100%|██████████| 50/50 [01:00&lt;00:00,  1.20s/epoch, loss=0.0809]
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training complete.
               precision    recall  f1-score   support
 
-           0     0.7386    0.9559    0.8333        68
-           1     0.7857    0.3235    0.4583        34
+           0     0.9388    0.6765    0.7863        68
+           1     0.5849    0.9118    0.7126        34
 
-    accuracy                         0.7451       102
-   macro avg     0.7622    0.6397    0.6458       102
-weighted avg     0.7543    0.7451    0.7083       102
+    accuracy                         0.7549       102
+   macro avg     0.7618    0.7941    0.7495       102
+weighted avg     0.8208    0.7549    0.7618       102
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -819,12 +828,12 @@ weighted avg     0.7543    0.7451    0.7083       102
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/eeffebfe7bf34986325857695fdc5dfab5fde1c7ec0a9ce8553c9ce5687ece55.png" src="../_images/eeffebfe7bf34986325857695fdc5dfab5fde1c7ec0a9ce8553c9ce5687ece55.png" />
+<img alt="../_images/8f347f753b3ec40e7ecb4941dde8e78d483d8516fa3c86af21af5cc5fa47ee1d.png" src="../_images/8f347f753b3ec40e7ecb4941dde8e78d483d8516fa3c86af21af5cc5fa47ee1d.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Micro-averaged One-vs-Rest ROC AUC score:
-0.84
+0.83
 </pre></div>
 </div>
-<img alt="../_images/fa2ca6b345bd4bbe4fdbdc0759489cc0e5971bdddf9ad8dc41f69cb26e8b9e9a.png" src="../_images/fa2ca6b345bd4bbe4fdbdc0759489cc0e5971bdddf9ad8dc41f69cb26e8b9e9a.png" />
+<img alt="../_images/0b2cac3143456bbce56556bc742b98a166121fb850224d56422d16b4b80af1cd.png" src="../_images/0b2cac3143456bbce56556bc742b98a166121fb850224d56422d16b4b80af1cd.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -839,7 +848,7 @@ weighted avg     0.7543    0.7451    0.7083       102
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sum of non-zero parameters: 130720
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sum of non-zero parameters: 155344
 </pre></div>
 </div>
 </div>
@@ -858,8 +867,8 @@ weighted avg     0.7543    0.7451    0.7083       102
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total = 6.4Gb 	 Reserved = 7.3Gb 	 Allocated = 0.0Gb
-Total = 6.4Gb 	 Reserved = 1.0Gb 	 Allocated = 0.0Gb
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total = 6.4Gb 	 Reserved = 6.6Gb 	 Allocated = 0.0Gb
+Total = 6.4Gb 	 Reserved = 0.1Gb 	 Allocated = 0.0Gb
 </pre></div>
 </div>
 </div>
@@ -903,7 +912,7 @@ C:\Users\Barry\anaconda3\lib\site-packages\captum\attr\_core\deep_lift.py:304: U
   warnings.warn(
 </pre></div>
 </div>
-<img alt="../_images/8e603b4bc00f1ac4dbe3f17955d52b8b2f03a9d27a575d64e31b19f256e67a4d.png" src="../_images/8e603b4bc00f1ac4dbe3f17955d52b8b2f03a9d27a575d64e31b19f256e67a4d.png" />
+<img alt="../_images/f35dfddfcbc8023fdd352def3157d29ce7ae98a620a76d14fc7305b0293adf0b.png" src="../_images/f35dfddfcbc8023fdd352def3157d29ce7ae98a620a76d14fc7305b0293adf0b.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MaskedLinear(in_features=27687, out_features=9229, bias=True)
 MaskedLinear(in_features=9229, out_features=1397, bias=True)
 MaskedLinear(in_features=1397, out_features=1066, bias=True)
@@ -912,12 +921,12 @@ MaskedLinear(in_features=447, out_features=147, bias=True)
 MaskedLinear(in_features=147, out_features=26, bias=True)
 </pre></div>
 </div>
-<img alt="../_images/943ef409f9805e0d01b501ef91ace321c571e28c5279434fc9fc39044dbfa0f5.png" src="../_images/943ef409f9805e0d01b501ef91ace321c571e28c5279434fc9fc39044dbfa0f5.png" />
-<img alt="../_images/f169c3d007706e9977693549d4a94d8a8eb5f075bc907be613c3c09d31dc291a.png" src="../_images/f169c3d007706e9977693549d4a94d8a8eb5f075bc907be613c3c09d31dc291a.png" />
-<img alt="../_images/cb2f462c525576cffcfae55db1861c8b3c669504541d85f21e897cd9f88d3d87.png" src="../_images/cb2f462c525576cffcfae55db1861c8b3c669504541d85f21e897cd9f88d3d87.png" />
-<img alt="../_images/6a9d62c6a8b316c33d3820f8170961ffb4da2e5c97f2531f70c499f633a3f296.png" src="../_images/6a9d62c6a8b316c33d3820f8170961ffb4da2e5c97f2531f70c499f633a3f296.png" />
-<img alt="../_images/1457b35570c7f5a6c4d49db4ac30a9dd2a7c0e7f47ec2cc17a6c64368ffd4fae.png" src="../_images/1457b35570c7f5a6c4d49db4ac30a9dd2a7c0e7f47ec2cc17a6c64368ffd4fae.png" />
-<img alt="../_images/0ee48cb2ce408f7b95b83bf4097e659e38264d1eaa007384d572159e0bbeca7b.png" src="../_images/0ee48cb2ce408f7b95b83bf4097e659e38264d1eaa007384d572159e0bbeca7b.png" />
+<img alt="../_images/bdb9c674e5c1770dc31fa700fa0eb9663e03016ea1eb1dbbc3c94e22e82d79dc.png" src="../_images/bdb9c674e5c1770dc31fa700fa0eb9663e03016ea1eb1dbbc3c94e22e82d79dc.png" />
+<img alt="../_images/10a5105ba60f6fee21fd6993e067212cef2831f2ebe81bebb6ce6ddcb47b26c0.png" src="../_images/10a5105ba60f6fee21fd6993e067212cef2831f2ebe81bebb6ce6ddcb47b26c0.png" />
+<img alt="../_images/5c5e74a30c3b79dc579bc4416222a416fe6d76a786e6cbc9596e40cedb000355.png" src="../_images/5c5e74a30c3b79dc579bc4416222a416fe6d76a786e6cbc9596e40cedb000355.png" />
+<img alt="../_images/86a565d31d612c8947c07c40c45983172b49af636cdb491c25edfc1c5fcad09a.png" src="../_images/86a565d31d612c8947c07c40c45983172b49af636cdb491c25edfc1c5fcad09a.png" />
+<img alt="../_images/53a12eaf561b2186171deaed62737423537577bb8c090e1bab2b27d75af475a6.png" src="../_images/53a12eaf561b2186171deaed62737423537577bb8c090e1bab2b27d75af475a6.png" />
+<img alt="../_images/46dd33ac8bbad58e2082cd7b994d0da11f9e89448e5e65f048a071b9e3eb976c.png" src="../_images/46dd33ac8bbad58e2082cd7b994d0da11f9e89448e5e65f048a071b9e3eb976c.png" />
 </div>
 </div>
 </section>
@@ -931,10 +940,10 @@ MaskedLinear(in_features=147, out_features=26, bias=True)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/eeffebfe7bf34986325857695fdc5dfab5fde1c7ec0a9ce8553c9ce5687ece55.png" src="../_images/eeffebfe7bf34986325857695fdc5dfab5fde1c7ec0a9ce8553c9ce5687ece55.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AUC Score: 0.8412629757785468
+<img alt="../_images/8f347f753b3ec40e7ecb4941dde8e78d483d8516fa3c86af21af5cc5fa47ee1d.png" src="../_images/8f347f753b3ec40e7ecb4941dde8e78d483d8516fa3c86af21af5cc5fa47ee1d.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AUC Score: 0.9364186851211072
 Micro-averaged One-vs-Rest ROC AUC score:
-0.84
+0.83
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Barry\anaconda3\lib\site-packages\captum\_utils\gradient.py:57: UserWarning: Input Tensor 0 did not already require gradients, required_grads has been set automatically.
@@ -945,8 +954,8 @@ C:\Users\Barry\anaconda3\lib\site-packages\captum\attr\_core\deep_lift.py:304: U
   warnings.warn(
 </pre></div>
 </div>
-<img alt="../_images/fa2ca6b345bd4bbe4fdbdc0759489cc0e5971bdddf9ad8dc41f69cb26e8b9e9a.png" src="../_images/fa2ca6b345bd4bbe4fdbdc0759489cc0e5971bdddf9ad8dc41f69cb26e8b9e9a.png" />
-<img alt="../_images/8e603b4bc00f1ac4dbe3f17955d52b8b2f03a9d27a575d64e31b19f256e67a4d.png" src="../_images/8e603b4bc00f1ac4dbe3f17955d52b8b2f03a9d27a575d64e31b19f256e67a4d.png" />
+<img alt="../_images/0b2cac3143456bbce56556bc742b98a166121fb850224d56422d16b4b80af1cd.png" src="../_images/0b2cac3143456bbce56556bc742b98a166121fb850224d56422d16b4b80af1cd.png" />
+<img alt="../_images/f35dfddfcbc8023fdd352def3157d29ce7ae98a620a76d14fc7305b0293adf0b.png" src="../_images/f35dfddfcbc8023fdd352def3157d29ce7ae98a620a76d14fc7305b0293adf0b.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MaskedLinear(in_features=27687, out_features=9229, bias=True)
 MaskedLinear(in_features=9229, out_features=1397, bias=True)
 MaskedLinear(in_features=1397, out_features=1066, bias=True)
@@ -955,12 +964,12 @@ MaskedLinear(in_features=447, out_features=147, bias=True)
 MaskedLinear(in_features=147, out_features=26, bias=True)
 </pre></div>
 </div>
-<img alt="../_images/943ef409f9805e0d01b501ef91ace321c571e28c5279434fc9fc39044dbfa0f5.png" src="../_images/943ef409f9805e0d01b501ef91ace321c571e28c5279434fc9fc39044dbfa0f5.png" />
-<img alt="../_images/f169c3d007706e9977693549d4a94d8a8eb5f075bc907be613c3c09d31dc291a.png" src="../_images/f169c3d007706e9977693549d4a94d8a8eb5f075bc907be613c3c09d31dc291a.png" />
-<img alt="../_images/cb2f462c525576cffcfae55db1861c8b3c669504541d85f21e897cd9f88d3d87.png" src="../_images/cb2f462c525576cffcfae55db1861c8b3c669504541d85f21e897cd9f88d3d87.png" />
-<img alt="../_images/6a9d62c6a8b316c33d3820f8170961ffb4da2e5c97f2531f70c499f633a3f296.png" src="../_images/6a9d62c6a8b316c33d3820f8170961ffb4da2e5c97f2531f70c499f633a3f296.png" />
-<img alt="../_images/1457b35570c7f5a6c4d49db4ac30a9dd2a7c0e7f47ec2cc17a6c64368ffd4fae.png" src="../_images/1457b35570c7f5a6c4d49db4ac30a9dd2a7c0e7f47ec2cc17a6c64368ffd4fae.png" />
-<img alt="../_images/0ee48cb2ce408f7b95b83bf4097e659e38264d1eaa007384d572159e0bbeca7b.png" src="../_images/0ee48cb2ce408f7b95b83bf4097e659e38264d1eaa007384d572159e0bbeca7b.png" />
+<img alt="../_images/bdb9c674e5c1770dc31fa700fa0eb9663e03016ea1eb1dbbc3c94e22e82d79dc.png" src="../_images/bdb9c674e5c1770dc31fa700fa0eb9663e03016ea1eb1dbbc3c94e22e82d79dc.png" />
+<img alt="../_images/10a5105ba60f6fee21fd6993e067212cef2831f2ebe81bebb6ce6ddcb47b26c0.png" src="../_images/10a5105ba60f6fee21fd6993e067212cef2831f2ebe81bebb6ce6ddcb47b26c0.png" />
+<img alt="../_images/5c5e74a30c3b79dc579bc4416222a416fe6d76a786e6cbc9596e40cedb000355.png" src="../_images/5c5e74a30c3b79dc579bc4416222a416fe6d76a786e6cbc9596e40cedb000355.png" />
+<img alt="../_images/86a565d31d612c8947c07c40c45983172b49af636cdb491c25edfc1c5fcad09a.png" src="../_images/86a565d31d612c8947c07c40c45983172b49af636cdb491c25edfc1c5fcad09a.png" />
+<img alt="../_images/53a12eaf561b2186171deaed62737423537577bb8c090e1bab2b27d75af475a6.png" src="../_images/53a12eaf561b2186171deaed62737423537577bb8c090e1bab2b27d75af475a6.png" />
+<img alt="../_images/46dd33ac8bbad58e2082cd7b994d0da11f9e89448e5e65f048a071b9e3eb976c.png" src="../_images/46dd33ac8bbad58e2082cd7b994d0da11f9e89448e5e65f048a071b9e3eb976c.png" />
 </div>
 </div>
 </section>
